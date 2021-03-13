@@ -1,7 +1,7 @@
 # RedTeamDBApp
 
 ## Authors:
-*Bouabdellah Hakim*, *Feruzi Joseph*, *Mayodon Émilie*, *Spoltore Domenico*, *Thien Tran Minh*, *Vasil Alexander*
+*Bouabdellah Hakim*, *Feruzi Joseph*, *Spoltore Domenico*, *Thien Tran Minh*, *Vasil Alexander*
 
 ## Introduction:
 *This course explores the process of developing real-world information systems. The team projects that are central to the course allow you to demonstrate that you have synthesized the materials covered in the courses leading up to this course and to have an opportunity to see how a real commercial system is developed. You will be introduced to methods and techniques currently being used to determine what a client wants and needs. You will also have the opportunity to analyze these requirements and design and build a database system for an actual organization. As well, you will experience what it is to be part of a development team. The general objective of the course is to simulate the process of developing computerized information systems that you are likely to encounter in any analyst or programmer work environment. The specific objectives are to learn about project management, information and requirements gathering, data modeling, information-level design, user interface design and prototyping. You will also learn how to both lead, and be a member of, a project team. The course consists of two projects: The development of a prototype database information system (the development project), and documentation about the process of building that system (the documentation project).*
