@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2021 at 04:47 AM
+-- Generation Time: May 07, 2021 at 09:44 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -38,6 +38,17 @@ CREATE TABLE `ingredient` (
   `ingredient_type` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `ingredient`
+--
+
+INSERT INTO `ingredient` (`ingredient_id`, `supplier_id`, `order_day`, `ingredient_name`, `ingredient_type`) VALUES
+(1, 4, 'Monday', 'Strawberry', 'Fruit'),
+(4, 3, 'Monday', 'Blueberry', 'Fruit'),
+(6, 4, 'Monday', 'Blueberry', 'Fruit'),
+(8, 4, 'Monday', 'Apple', 'Fruit'),
+(9, 5, 'Friday', 'Tomato', 'Fruit');
+
 -- --------------------------------------------------------
 
 --
@@ -50,8 +61,16 @@ CREATE TABLE `orders` (
   `supplier_id` int(11) DEFAULT NULL,
   `ingredient_id` int(11) DEFAULT NULL,
   `stock_id` int(11) DEFAULT NULL,
-  `order_day` int(11) DEFAULT NULL
+  `order_day` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `supplier_id`, `ingredient_id`, `stock_id`, `order_day`) VALUES
+(1, 5, 3, 2, 'Friday'),
+(4, 5, 9, 2, '0');
 
 -- --------------------------------------------------------
 
@@ -67,6 +86,13 @@ CREATE TABLE `stock` (
   `amount_needed` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `stock`
+--
+
+INSERT INTO `stock` (`stock_id`, `ingredient_id`, `in_stock`, `amount_needed`) VALUES
+(1, 8, 10, 30);
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +106,18 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`supplier_id`, `supplier_name`) VALUES
+(2, 'pokestation'),
+(3, 'pokestation2'),
+(4, 'pokestation100'),
+(5, 'PokestationTest'),
+(6, 'hello world'),
+(7, 'test6');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -88,16 +126,16 @@ CREATE TABLE `supplier` (
 --
 ALTER TABLE `ingredient`
   ADD PRIMARY KEY (`ingredient_id`),
-  ADD UNIQUE KEY `FK_INGREDIENT_SUPPLIER` (`supplier_id`);
+  ADD KEY `FK_INGREDIENT_SUPPLIER` (`supplier_id`) USING BTREE;
 
 --
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
-  ADD UNIQUE KEY `FK_ORDERS_SUPPLIER` (`supplier_id`),
-  ADD UNIQUE KEY `FK_ORDERS_INGREDIENT` (`ingredient_id`),
-  ADD UNIQUE KEY `FK_ORDERS_STOCK` (`stock_id`);
+  ADD KEY `FK_ORDERS_SUPPLIER` (`supplier_id`) USING BTREE,
+  ADD KEY `FK_ORDERS_INGREDIENT` (`ingredient_id`) USING BTREE,
+  ADD KEY `FK_ORDERS_STOCK` (`stock_id`) USING BTREE;
 
 --
 -- Indexes for table `stock`
@@ -120,25 +158,25 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `ingredient`
 --
 ALTER TABLE `ingredient`
-  MODIFY `ingredient_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ingredient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
