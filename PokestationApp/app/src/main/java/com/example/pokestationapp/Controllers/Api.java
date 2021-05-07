@@ -1,4 +1,4 @@
-package com.example.pokestationapp;
+package com.example.pokestationapp.Controllers;
 
 public class Api {
 
