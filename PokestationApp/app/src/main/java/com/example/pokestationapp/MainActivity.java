@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             try {
 //                System.out.println("Response: " + networkRequest.result.get());
                 try {
-                    JsonParse.processResponse(networkRequest.result.get());
+                    System.out.println(JsonParse.getResponseArr(networkRequest.result.get()));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

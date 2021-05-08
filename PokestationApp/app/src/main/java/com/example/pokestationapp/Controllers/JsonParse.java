@@ -1,20 +1,24 @@
 package com.example.pokestationapp.Controllers;
 
-import com.google.gson.Gson;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class JsonParse {
 
-    public static void processResponse(String jsonResponse) throws JSONException {
-        Gson g = new Gson();
+    public static ArrayList<String> getResponseArr(String jsonResponse) throws JSONException {
+        ArrayList<String> responseArr = new ArrayList<>();
+
         JSONObject jsonObject = new JSONObject(jsonResponse);
         JSONArray response = jsonObject.getJSONArray("response");
+
         for (int i = 0; i < response.length(); i++) {
-            System.out.println(response.get(i));
+            responseArr.add(response.get(i).toString());
         }
+
+        return responseArr;
     }
 
 }
