@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.example.pokestationapp.Controllers.Api;
+import com.example.pokestationapp.Controllers.JsonParse;
 import com.example.pokestationapp.Controllers.RequestHandler;
 import com.example.pokestationapp.Models.Days;
 import com.example.pokestationapp.Models.Ingredient;
@@ -42,7 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
         while (!networkRequest.result.isDone()) {
             try {
-                System.out.println("Response: " + networkRequest.result.get());
+//                System.out.println("Response: " + networkRequest.result.get());
+                try {
+                    JsonParse.processResponse(networkRequest.result.get());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
