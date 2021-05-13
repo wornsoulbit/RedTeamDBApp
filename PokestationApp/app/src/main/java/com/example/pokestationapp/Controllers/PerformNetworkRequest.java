@@ -1,12 +1,24 @@
 package com.example.pokestationapp.Controllers;
 
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.example.pokestationapp.Models.Days;
+import com.example.pokestationapp.Models.Ingredient;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class PerformNetworkRequest {
+public class PerformNetworkRequest{
 
     public static final int CODE_GET_REQUEST = 1024;
     public static final int CODE_POST_REQUEST = 1025;

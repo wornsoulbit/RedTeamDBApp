@@ -59,7 +59,6 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
                 for (int i = 0; i < response.length(); i++) {
                     response.getJSONObject(i).get("ingredient_name");
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
