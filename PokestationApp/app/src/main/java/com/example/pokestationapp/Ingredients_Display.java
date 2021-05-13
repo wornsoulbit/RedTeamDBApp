@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.pokestationapp.Controllers.Api;
 import com.example.pokestationapp.Controllers.JsonParse;
+import com.example.pokestationapp.Controllers.PerformNetworkRequest;
 import com.example.pokestationapp.Controllers.RequestHandler;
 import com.example.pokestationapp.Models.Days;
 import com.example.pokestationapp.Models.Ingredient;
@@ -23,6 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -50,7 +52,17 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
 
     private void readIngredients() {
         PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_GET_INGREDIENTS, null, 1024);
-        request.execute();
+        while (!request.getResult().isDone()) {
+            try {
+                JsonParse.getResponseArr(request.getResult().get());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void refreshIngredientList(JSONArray list) throws JSONException {
@@ -81,112 +93,5 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
                 "fruit"));
 
         Log.e("test", ingredients.toString());
-
-        /*RecyclerView recyclerView = findViewById(R.id.ingredients_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new Ingredients_RecyclerViewAdapter(this, ingredients);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);*/
-
-        //creating the adapter and setting it to the listview
-        //HeroAdapter adapter = new HeroAdapter(heroList);
-        //listView.setAdapter(adapter);
-    }
-
-    /*
-    private class PerformNetworkRequest {
-
-        // Url of the request.
-        String url;
-        // Params of the request.
-        HashMap< String, String > params;
-        // Request code for if its a POST or GET request.
-        int requestCode;
-
-        PerformNetworkRequest(String url, HashMap < String, String > params, int requestCode) {
-            this.url = url;
-            this.params = params;
-            this.requestCode = requestCode;
-        }
-
-        ExecutorService pool = Executors.newSingleThreadExecutor();
-        Future< String > result = pool.submit(new Callable< String >() {
-            @Override
-            public String call() throws Exception {
-                RequestHandler requestHandler = new RequestHandler();
-                if (requestCode == 1025) {
-                    return requestHandler.sendPostRequest(url, params);
-                }
-
-                if (requestCode == 1024) {
-                    return requestHandler.sendGetRequests(url);
-                }
-
-                return null;
-            }
-        });
-    }
-    */
-
-    private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
-
-        //the url where we need to send the request
-        String url;
-
-        //the parameters
-        HashMap<String, String> params;
-
-        //the request code to define whether it is a GET or POST
-        int requestCode;
-
-        //constructor to initialize values
-        PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode) {
-            this.url = url;
-            this.params = params;
-            this.requestCode = requestCode;
-        }
-
-        //when the task started displaying a progressbar
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            //progressBar.setVisibility(View.VISIBLE);
-        }
-
-
-        //this method will give the response from the request
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            //progressBar.setVisibility(GONE);
-            try {
-                JSONObject object = new JSONObject(s);
-                if (!object.getBoolean("error")) {
-                    Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
-                    //refreshing the herolist after every operation
-                    //so we get an updated list
-                    //we will create this method right now it is commented
-                    //because we haven't created it yet
-                    refreshIngredientList(object.getJSONArray("ingredients"));
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        //the network operation will be performed in background
-        @Override
-        protected String doInBackground(Void... voids) {
-            RequestHandler requestHandler = new RequestHandler();
-
-            if (requestCode == 1025)
-                return requestHandler.sendPostRequest(url, params);
-
-
-            if (requestCode == 1024)
-                return requestHandler.sendGetRequests(url);
-
-            return null;
-        }
     }
 }

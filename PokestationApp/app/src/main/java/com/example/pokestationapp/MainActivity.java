@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.pokestationapp.Controllers.Api;
 import com.example.pokestationapp.Controllers.JsonParse;
+import com.example.pokestationapp.Controllers.PerformNetworkRequest;
 import com.example.pokestationapp.Controllers.RequestHandler;
 import com.example.pokestationapp.Models.Days;
 import com.example.pokestationapp.Models.Ingredient;
@@ -44,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
 
         PerformNetworkRequest networkRequest = new PerformNetworkRequest(Api.URL_GET_INGREDIENTS, null, CODE_GET_REQUEST);
 
-        while (!networkRequest.result.isDone()) {
+        while (!networkRequest.getResult().isDone()) {
             try {
 //                System.out.println("Response: " + networkRequest.result.get());
                 try {
-                    System.out.println(JsonParse.getResponseArr(networkRequest.result.get()));
-                    Log.e("test", JsonParse.getResponseArr(networkRequest.result.get()).toString());
+                    System.out.println(JsonParse.getResponseArr(networkRequest.getResult().get()));
+//                    Log.e("test", JsonParse.getResponseArr(networkRequest.result.get()).toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -59,39 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-    }
-
-    private class PerformNetworkRequest {
-
-        // Url of the request.
-        String url;
-        // Params of the request.
-        HashMap < String, String > params;
-        // Request code for if its a POST or GET request.
-        int requestCode;
-
-        PerformNetworkRequest(String url, HashMap < String, String > params, int requestCode) {
-            this.url = url;
-            this.params = params;
-            this.requestCode = requestCode;
-        }
-
-        ExecutorService pool = Executors.newSingleThreadExecutor();
-        Future < String > result = pool.submit(new Callable < String > () {
-            @Override
-            public String call() throws Exception {
-                RequestHandler requestHandler = new RequestHandler();
-                if (requestCode == CODE_POST_REQUEST) {
-                    return requestHandler.sendPostRequest(url, params);
-                }
-
-                if (requestCode == CODE_GET_REQUEST) {
-                    return requestHandler.sendGetRequests(url);
-                }
-
-                return null;
-            }
-        });
     }
 
     public void viewIngredients(View view)
