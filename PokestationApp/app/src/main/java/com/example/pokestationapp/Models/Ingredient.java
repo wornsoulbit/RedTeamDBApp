@@ -35,4 +35,15 @@ public class Ingredient {
     public String getIngredient_type() {
         return ingredient_type;
     }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "ingredient_id=" + ingredient_id +
+                ", supplier_id=" + supplier_id +
+                ", order_day=" + order_day +
+                ", ingredient_name='" + ingredient_name + '\'' +
+                ", ingredient_type='" + ingredient_type + '\'' +
+                '}';
+    }
 }
