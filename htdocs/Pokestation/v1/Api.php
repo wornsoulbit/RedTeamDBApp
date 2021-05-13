@@ -40,7 +40,6 @@
                 if ($result) {
                     $response['error'] = false;
                     $response['message'] = "Supplier added successfully";
-                    $response['supplier'] = $db->getSuppliers();
                 }
                 else {
                     $response['error'] = true;
@@ -52,7 +51,7 @@
                 $db = new DbOperation();
                 $response['error'] = false;
                 $response['message'] = "Request completed";
-                $response['suppliers'] = $db->getSuppliers();
+                $response['response'] = $db->getSuppliers();
             break;
 
             case "updateSupplier":
@@ -67,7 +66,6 @@
                 if ($result) {
                     $response['error'] = false;
                     $response['message'] = 'Supplier updated successfully';
-                    $response['suppliers'] = $db->getSuppliers();
                 }
                 else {
                     $response['error'] = true;
@@ -83,7 +81,6 @@
                     if ($db->deleteSupplier($_GET['supplier_id'])) {
                         $response['error'] = false;
                         $response['message'] = "Supplier successfully deleted";
-                        $response['supplier'] = $db->getSuppliers();
                     }
                     else {
                         $response['error'] = true;
@@ -112,7 +109,6 @@
                 if ($result) {
                     $response['error'] = false;
                     $response['message'] = "Ingredient added successfully";
-                    $response['ingredients'] = $db->getIngredients();
                 }
                 else {
                     $response['error'] = true;
@@ -124,7 +120,7 @@
                 $db = new DbOperation();
                 $response['error'] = false;
                 $response['message'] = "Request completed";
-                $response['ingredients'] = $db->getIngredients();
+                $response['response'] = $db->getIngredients();
             break;
 
             case "updateIngredient":
@@ -143,7 +139,6 @@
                 if ($result) {
                     $response['error'] = false;
                     $response['message'] = 'Ingredient updated successfully';
-                    $response['ingredients'] = $db->getIngredients();
                 }
                 else {
                     $response['error'] = true;
@@ -159,7 +154,6 @@
                     if ($db->deleteIngredient($_GET['ingredient_id'])) {
                         $response['error'] = false;
                         $response['message'] = "Ingredient successfully deleted";
-                        $response['ingredients'] = $db->getIngredients();
                     }
                     else {
                         $response['error'] = true;
@@ -188,7 +182,6 @@
                 if ($result) {
                     $response['error'] = false;
                     $response['message'] = "Order added successfully";
-                    $response['order'] = $db->getOrders();
                 }
                 else {
                     $response['error'] = true;
@@ -200,7 +193,7 @@
                 $db = new DbOperation();
                 $response['error'] = false;
                 $response['message'] = "Request completed";
-                $response['order'] = $db->getOrders();
+                $response['response'] = $db->getOrders();
             break;
 
             case "updateOrder":
@@ -218,7 +211,6 @@
                 if ($result) {
                     $response['error'] = false;
                     $response['message'] = 'Order updated successfully';
-                    $response['order'] = $db->getOrders();
                 }
                 else {
                     $response['error'] = true;
@@ -234,7 +226,6 @@
                     if ($db->deleteOrder($_GET['order_id'])) {
                         $response['error'] = false;
                         $response['message'] = "Order successfully deleted";
-                        $response['order'] = $db->getOrders();
                     }
                     else {
                         $response['error'] = true;
@@ -262,7 +253,6 @@
                 if ($result) {
                     $response['error'] = false;
                     $response['message'] = "Stock added successfully";
-                    $response['order'] = $db->getStocks();
                 }
                 else {
                     $response['error'] = true;
@@ -274,7 +264,7 @@
                 $db = new DbOperation();
                 $response['error'] = false;
                 $response['message'] = "Request completed";
-                $response['order'] = $db->getStocks();
+                $response['response'] = $db->getStocks();
             break;
 
             case "updateStock":
@@ -291,7 +281,6 @@
                 if ($result) {
                     $response['error'] = false;
                     $response['message'] = 'Stock updated successfully';
-                    $response['order'] = $db->getStocks();
                 }
                 else {
                     $response['error'] = true;
@@ -307,7 +296,6 @@
                     if ($db->deleteOrder($_GET['stock_id'])) {
                         $response['error'] = false;
                         $response['message'] = "Stock successfully deleted";
-                        $response['order'] = $db->getStocks();
                     }
                     else {
                         $response['error'] = true;

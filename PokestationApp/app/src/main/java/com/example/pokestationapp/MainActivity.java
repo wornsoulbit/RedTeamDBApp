@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         params.put("ingredient_name", "Cherry Tomato");
         params.put("ingredient_type", "Fruit");
 
-        PerformNetworkRequest networkRequest = new PerformNetworkRequest(Api.URL_GET_INGREDIENTS, null, CODE_GET_REQUEST);
+        PerformNetworkRequest networkRequest = new PerformNetworkRequest(Api.URL_GET_STOCKS, null, CODE_GET_REQUEST);
 
         while (!networkRequest.getResult().isDone()) {
             try {
