@@ -55,7 +55,6 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
         while (!request.getResult().isDone()) {
             try {
                 JSONArray response = JsonParse.getResponseArr(request.getResult().get());
-
                 for (int i = 0; i < response.length(); i++) {
                     response.getJSONObject(i).get("ingredient_name");
                 }
