@@ -54,14 +54,7 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
         PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_GET_INGREDIENTS, null, 1024);
         while (!request.getResult().isDone()) {
             try {
-                JSONArray response = JsonParse.getResponseArr(request.getResult().get());
-
-                System.out.println(response);
-
-                for (int i = 0; i < response.length(); i++) {
-                    response.getJSONObject(i).get("ingredient_name");
-                }
-
+                JsonParse.getResponseArr(request.getResult().get());
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

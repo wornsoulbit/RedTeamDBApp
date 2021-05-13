@@ -8,9 +8,17 @@ import java.util.ArrayList;
 
 public class JsonParse {
 
-    public static JSONArray getResponseArr(String jsonResponse) throws JSONException {
+    public static ArrayList<String> getResponseArr(String jsonResponse) throws JSONException {
+        ArrayList<String> responseArr = new ArrayList<>();
+
         JSONObject jsonObject = new JSONObject(jsonResponse);
-        return jsonObject.getJSONArray("response");
+        JSONArray response = jsonObject.getJSONArray("response");
+
+        for (int i = 0; i < response.length(); i++) {
+            responseArr.add(response.get(i).toString());
+        }
+
+        return responseArr;
     }
 
 }
