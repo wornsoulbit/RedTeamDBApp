@@ -2,8 +2,11 @@ package com.example.pokestationapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import com.example.pokestationapp.Controllers.Api;
 import com.example.pokestationapp.Controllers.JsonParse;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 //                System.out.println("Response: " + networkRequest.result.get());
                 try {
                     System.out.println(JsonParse.getResponseArr(networkRequest.result.get()));
+                    Log.e("test", JsonParse.getResponseArr(networkRequest.result.get()).toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -55,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
     }
 
     private class PerformNetworkRequest {
@@ -89,5 +92,11 @@ public class MainActivity extends AppCompatActivity {
                 return null;
             }
         });
+    }
+
+    public void viewIngredients(View view)
+    {
+        Intent intent = new Intent(this, Ingredients_Display.class);
+        startActivity(intent);
     }
 }

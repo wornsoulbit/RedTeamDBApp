@@ -2,7 +2,7 @@ package com.example.pokestationapp.Controllers;
 
 public class Api {
 
-    private static final String ROOT_URL =  "http://192.168.2.13/Pokestation/v1/Api.php?apicall=";
+    private static final String ROOT_URL =  "http://192.168.0.123/Pokestation/v1/Api.php?apicall=";
 
     //Ingredients
     public static final String URL_CREATE_INGREDIENT = ROOT_URL + "createIngredient";
