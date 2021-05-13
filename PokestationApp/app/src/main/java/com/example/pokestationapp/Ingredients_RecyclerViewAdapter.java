@@ -63,7 +63,6 @@ public class Ingredients_RecyclerViewAdapter extends RecyclerView.Adapter<Ingred
         @Override
         public void onClick(View view) {
             if(mClickListener !=null) mClickListener.onItemClick(view, getAdapterPosition());
-
         }
     }
 

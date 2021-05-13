@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,9 +52,13 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this,"you clicked " +
-                adapter.getItem(position) + " on row number" + position, Toast.LENGTH_LONG).show();
-
+        Intent intent = new Intent(this, Ingredient_Details.class);
+        intent.putExtra("ingredient_id", adapter.getItem(position).getIngredient_id());
+        intent.putExtra("supplier_id", adapter.getItem(position).getSupplier_id());
+        intent.putExtra("order_day", adapter.getItem(position).getOrder_day());
+        intent.putExtra("ingredient_name", adapter.getItem(position).getIngredient_name());
+        intent.putExtra("ingredient_type", adapter.getItem(position).getIngredient_type());
+        startActivity(intent);
     }
 
     private void readIngredients() {
@@ -78,7 +83,7 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
                     ));
                 }
 
-                Log.e("test", ingredients.toString());
+                //Log.e("test", ingredients.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -87,35 +92,5 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
                 e.printStackTrace();
             }
         }
-    }
-
-    private void refreshIngredientList(JSONArray list) throws JSONException {
-        //clearing previous heroes
-        ingredients.clear();
-
-        //traversing through all the items in the json array
-        //the json we got from the response
-        for (int i = 0; i < list.length(); i++) {
-            //getting each hero object
-            JSONObject obj = list.getJSONObject(i);
-
-            //adding the hero to the list
-            ingredients.add(new Ingredient(
-                    obj.getInt("ingredient_id"),
-                    obj.getInt("supplier_id"),
-                    Days.valueOf(obj.getString("order_day").toUpperCase()),
-                    obj.getString("ingredient_name"),
-                    obj.getString("ingredient_type")
-            ));
-        }
-
-        ingredients.add(new Ingredient(
-                1,
-                4,
-                Days.MONDAY,
-                "StrawBerry",
-                "fruit"));
-
-        Log.e("test", ingredients.toString());
     }
 }
