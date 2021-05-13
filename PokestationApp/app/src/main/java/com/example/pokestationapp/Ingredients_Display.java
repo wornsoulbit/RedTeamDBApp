@@ -41,6 +41,12 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
 
         readIngredients();
 
+        RecyclerView recyclerView = findViewById(R.id.ingredients_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new Ingredients_RecyclerViewAdapter(this, ingredients);
+
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -54,10 +60,25 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
         PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_GET_INGREDIENTS, null, 1024);
         while (!request.getResult().isDone()) {
             try {
+                ingredients.clear();
+
                 JSONArray response = JsonParse.getResponseArr(request.getResult().get());
-                for (int i = 0; i < response.length(); i++) {
-                    response.getJSONObject(i).get("ingredient_name");
+                for (int i = 0; i < response.length(); i++)
+                {
+                    //getting each hero object
+                    JSONObject obj = response.getJSONObject(i);
+
+                    //adding the hero to the list
+                    ingredients.add(new Ingredient(
+                            obj.getInt("ingredient_id"),
+                            obj.getInt("supplier_id"),
+                            Days.valueOf(obj.getString("order_day").toUpperCase()),
+                            obj.getString("ingredient_name"),
+                            obj.getString("ingredient_type")
+                    ));
                 }
+
+                Log.e("test", ingredients.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

@@ -55,8 +55,8 @@ public class Ingredients_RecyclerViewAdapter extends RecyclerView.Adapter<Ingred
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ingredient_name = itemView.findViewById(R.id.textView);
-            ingredient_type = itemView.findViewById(R.id.textView);
+            ingredient_name = itemView.findViewById(R.id.ingredient_name);
+            ingredient_type = itemView.findViewById(R.id.ingredient_type);
             itemView.setOnClickListener(this);
         }
 
