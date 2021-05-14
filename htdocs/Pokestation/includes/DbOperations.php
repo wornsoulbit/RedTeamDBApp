@@ -11,12 +11,19 @@ class DbOperation {
         $this->connection = $db->connect();
     }
 
-    function createIngredient($supplier_id, $order_day, $ingredient_name, $ingredient_type) {
+//"ingredient_id",
+// "order_day",
+// "ingredient_name",
+// "ingredient_type",
+// "stock",
+// "amount_needed"
+
+    function createIngredient($order_day, $ingredient_name, $ingredient_type, $stock, $amount_needed) {
         $stmt = $this
             ->connection
             ->prepare("INSERT INTO ingredient (supplier_id, order_day, ingredient_name, ingredient_type) 
                 VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("isss", $supplier_id, $order_day, $ingredient_name, $ingredient_type);
+        $stmt->bind_param("sssii", $order_day, $ingredient_name, $ingredient_type, $stock, $amount_needed);
         if ($stmt->execute()) return true;
         return false;
     }
@@ -26,17 +33,18 @@ class DbOperation {
             ->connection
             ->prepare("SELECT * FROM ingredient");
         $stmt->execute();
-        $stmt->bind_result($ingredient_id, $supplier_id, $order_day, $ingredient_name, $ingredient_type);
+        $stmt->bind_result($ingredient_id, $order_day, $ingredient_name, $ingredient_type, $stock, $amount_needed);
 
         $ingredients = array();
 
         while ($stmt->fetch()) {
             $ingredient = array();
             $ingredient['ingredient_id'] = $ingredient_id;
-            $ingredient['supplier_id'] = $supplier_id;
             $ingredient['order_day'] = $order_day;
             $ingredient['ingredient_name'] = $ingredient_name;
             $ingredient['ingredient_type'] = $ingredient_type;
+            $ingredient['stock'] = $stock;
+            $ingredient['amount_needed'] = $amount_needed;
 
             array_push($ingredients, $ingredient);
         }
@@ -44,13 +52,13 @@ class DbOperation {
         return $ingredients;
     }
 
-    function updateIngredient($ingredient_id, $supplier_id, $order_day, $ingredient_name, $ingredient_type) {
+    function updateIngredient($ingredient_id, $order_day, $ingredient_name, $ingredient_type, $stock, $amount_needed) {
         $stmt = $this
             ->connection
-            ->prepare("UPDATE ingredient SET supplier_id = ?, order_day = ?, ingredient_name = ?, ingredient_type = ?
-                WHERE ingredient_id = ?");
+            ->prepare("UPDATE ingredient SET order_day = ?, ingredient_name = ?, ingredient_type = ?, stock = ?, 
+            amount_needed = ? WHERE ingredient_id = ?");
 
-        $stmt->bind_param("isssi", $supplier_id, $order_day, $ingredient_name, $ingredient_type, $ingredient_id);
+        $stmt->bind_param("sssiii", $order_day, $ingredient_name, $ingredient_type, $stock, $amount_needed, $ingredient_id);
         if ($stmt->execute()) return true;
         return false;
     }

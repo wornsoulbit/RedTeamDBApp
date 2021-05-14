@@ -105,7 +105,7 @@
 
                 $db = new DbOperation();
 
-                $result = $db->createIngredient($_POST['supplier_id'], $_POST['order_day'], $_POST['ingredient_name'], $_POST['ingredient_type']);
+                $result = $db->createIngredient($_POST['order_day'], $_POST['ingredient_name'], $_POST['ingredient_type'], $_POST['stock'], $_POST['amount_needed']);
 
                 if ($result) {
                     $response['error'] = false;
@@ -136,7 +136,7 @@
                 // var_dump($_POST);
                 $db = new DbOperation();
 
-                $result = $db->updateIngredient($_POST['ingredient_id'], $_POST['supplier_id'], $_POST['order_day'], $_POST['ingredient_name'], $_POST['ingredient_type']);
+                $result = $db->updateIngredient($_POST['ingredient_id'], $_POST['order_day'], $_POST['ingredient_name'], $_POST['ingredient_type'], $_POST['stock'], $_POST['amount_needed']);
 
                 if ($result) {
                     $response['error'] = false;

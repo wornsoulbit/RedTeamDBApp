@@ -67,7 +67,7 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
             try {
                 ingredients.clear();
 
-                JSONArray response = JsonParse.getResponseArr(request.getResult().get());
+                JSONArray response = JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode());
                 for (int i = 0; i < response.length(); i++)
                 {
                     //getting each hero object
