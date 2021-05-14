@@ -14,8 +14,8 @@ class DbOperation {
     function createIngredient($order_day, $ingredient_name, $ingredient_type, $stock, $amount_needed) {
         $stmt = $this
             ->connection
-            ->prepare("INSERT INTO ingredient (supplier_id, order_day, ingredient_name, ingredient_type) 
-                VALUES (?, ?, ?, ?)");
+            ->prepare("INSERT INTO ingredient (order_day, ingredient_name, ingredient_type, stock, amount_needed) 
+                VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("sssii", $order_day, $ingredient_name, $ingredient_type, $stock, $amount_needed);
         if ($stmt->execute()) return true;
         return false;
