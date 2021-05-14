@@ -54,7 +54,7 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
     public void onItemClick(View view, int position) {
         Intent intent = new Intent(this, Ingredient_Details.class);
         intent.putExtra("ingredient_id", adapter.getItem(position).getIngredient_id());
-        intent.putExtra("supplier_id", adapter.getItem(position).getSupplier_id());
+        //intent.putExtra("supplier_id", adapter.getItem(position).getSupplier_id());
         intent.putExtra("order_day", adapter.getItem(position).getOrder_day());
         intent.putExtra("ingredient_name", adapter.getItem(position).getIngredient_name());
         intent.putExtra("ingredient_type", adapter.getItem(position).getIngredient_type());
@@ -79,11 +79,13 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
                             obj.getInt("supplier_id"),
                             Days.valueOf(obj.getString("order_day").toUpperCase()),
                             obj.getString("ingredient_name"),
-                            obj.getString("ingredient_type")
+                            obj.getString("ingredient_type")/*,
+                            obj.getInt("stock"),
+                            obj.getInt("amount_needed")*/
                     ));
                 }
 
-                //Log.e("test", ingredients.toString());
+                Log.e("test", ingredients.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

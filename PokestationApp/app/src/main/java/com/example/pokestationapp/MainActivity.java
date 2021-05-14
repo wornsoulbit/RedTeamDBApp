@@ -67,4 +67,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Ingredients_Display.class);
         startActivity(intent);
     }
+
+    public void addIngredients(View view)
+    {
+        Intent intent = new Intent(this, Ingredient_Add.class);
+        startActivity(intent);
+    }
 }
