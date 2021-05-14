@@ -96,10 +96,11 @@
 
             case "createIngredient":
                 isTheseParamsAvailable(array(
-                    "supplier_id",
                     "order_day",
                     "ingredient_name",
-                    "ingredient_type"
+                    "ingredient_type",
+                    "stock",
+                    "amount_needed"
                 ));
 
                 $db = new DbOperation();
@@ -126,10 +127,11 @@
             case "updateIngredient":
                 isTheseParamsAvailable(array(
                     "ingredient_id",
-                    "supplier_id",
                     "order_day",
                     "ingredient_name",
-                    "ingredient_type"
+                    "ingredient_type",
+                    "stock",
+                    "amount_needed"
                 ));
                 // var_dump($_POST);
                 $db = new DbOperation();
