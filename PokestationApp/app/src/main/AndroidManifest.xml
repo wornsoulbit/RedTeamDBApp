@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokestationApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Orders_Main"></activity>
+        <activity android:name=".Orders_add"></activity>
+        <activity android:name=".Suppliers_Add" />
+        <activity android:name=".Orders_Display" />
+        <activity android:name=".Suppliers_Display" />
+        <activity android:name=".Orders_Main" />
         <activity android:name=".Ingredient_Add" />
         <activity android:name=".Ingredient_Details" />
         <activity android:name=".Ingredients_Display" />
