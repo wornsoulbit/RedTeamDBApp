@@ -67,7 +67,7 @@ public class Ingredient_Details extends AppCompatActivity {
         {
             try
             {
-                Log.e("test", JsonParse.getResponseArr(request.getResult().get()).toString());
+                Log.e("test", JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode()).toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

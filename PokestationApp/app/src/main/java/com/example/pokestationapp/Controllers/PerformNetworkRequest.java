@@ -25,6 +25,8 @@ public class PerformNetworkRequest{
 
     public Future<String> getResult() { return result; }
 
+    public int getRequestCode() { return requestCode; }
+
     // Url of the request.
     String url;
     // Params of the request.

@@ -8,9 +8,16 @@ import java.util.ArrayList;
 
 public class JsonParse {
 
-    public static JSONArray getResponseArr(String jsonResponse) throws JSONException {
+    public static JSONArray getResponseArr(String jsonResponse, int requestCode) throws JSONException {
         JSONObject jsonObject = new JSONObject(jsonResponse);
-        return jsonObject.getJSONArray("response");
+
+        if (requestCode == 1024) {
+            return jsonObject.getJSONArray("response");
+        } else if (requestCode == 1025){
+            return jsonObject.getJSONArray("message");
+        } else {
+            return jsonObject.getJSONArray("error");
+        }
     }
 
 }
