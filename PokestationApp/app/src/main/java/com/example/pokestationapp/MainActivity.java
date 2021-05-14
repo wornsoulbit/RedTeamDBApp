@@ -73,4 +73,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Ingredient_Add.class);
         startActivity(intent);
     }
+
+    public void viewOrders(View view)
+    {
+        Intent intent = new Intent(this, Ingredient_Add.class);
+        startActivity(intent);
+    }
 }

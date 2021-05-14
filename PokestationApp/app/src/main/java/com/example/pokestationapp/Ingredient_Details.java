@@ -58,8 +58,8 @@ public class Ingredient_Details extends AppCompatActivity {
         params.put("ingredient_id", ingredient_id+"");
         params.put("supplier_id", supplier_id+"");
         params.put("order_days", Days.MONDAY.toString());
-        params.put("ingredient_name", ingredient_name);
-        params.put("ingredient_type", ingredient_type);
+        params.put("ingredient_name", editname.getText().toString());
+        params.put("ingredient_type", edittype.getText().toString());
 
 
         PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_UPDATE_INGREDIENT, params, 1025);
