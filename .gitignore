@@ -1,3 +1,6 @@
+# Ignoring Application Api
+/PokestationApp/app/src/main/java/com/example/pokestationapp/Controllers/Api.java
+
 *.rbc
 capybara-*.html
 .rspec
