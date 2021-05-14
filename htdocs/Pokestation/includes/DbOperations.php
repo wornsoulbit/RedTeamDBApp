@@ -11,13 +11,6 @@ class DbOperation {
         $this->connection = $db->connect();
     }
 
-//"ingredient_id",
-// "order_day",
-// "ingredient_name",
-// "ingredient_type",
-// "stock",
-// "amount_needed"
-
     function createIngredient($order_day, $ingredient_name, $ingredient_type, $stock, $amount_needed) {
         $stmt = $this
             ->connection
