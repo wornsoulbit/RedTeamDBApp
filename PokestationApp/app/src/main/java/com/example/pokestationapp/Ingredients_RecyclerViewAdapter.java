@@ -39,6 +39,8 @@ public class Ingredients_RecyclerViewAdapter extends RecyclerView.Adapter<Ingred
         Ingredient ingredient = ingredients.get(position);
         holder.ingredient_name.setText(ingredient.getIngredient_name());
         holder.ingredient_type.setText(ingredient.getIngredient_type());
+        holder.ingredient_stock.setText(ingredient.getStock()+"");
+        holder.ingredient_needed.setText(ingredient.getAmount_needed()+"");
     }
 
     @Override
@@ -57,6 +59,9 @@ public class Ingredients_RecyclerViewAdapter extends RecyclerView.Adapter<Ingred
             super(itemView);
             ingredient_name = itemView.findViewById(R.id.ingredient_name);
             ingredient_type = itemView.findViewById(R.id.ingredient_type);
+            ingredient_stock = itemView.findViewById(R.id.ingredient_stock);
+            ingredient_needed = itemView.findViewById(R.id.ingredient_needed);
+
             itemView.setOnClickListener(this);
         }
 

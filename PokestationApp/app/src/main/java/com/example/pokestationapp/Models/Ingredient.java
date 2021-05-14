@@ -3,24 +3,15 @@ package com.example.pokestationapp.Models;
 public class Ingredient {
 
     private int ingredient_id;
-    //private int supplier_id;
     private Days order_day;
     private String ingredient_name;
     private String ingredient_type;
     private int stock;
     private int amount_needed;
 
-    public Ingredient(int ingredient_id, int supplier_id, Days order_day, String ingredient_name, String ingredient_type) {
-        this.ingredient_id = ingredient_id;
-        //this.supplier_id = supplier_id;
-        this.order_day = order_day;
-        this.ingredient_name = ingredient_name;
-        this.ingredient_type = ingredient_type;
-    }
 
-    public Ingredient(int ingredient_id, int supplier_id, Days order_day, String ingredient_name, String ingredient_type, int stock, int amount_needed) {
+    public Ingredient(int ingredient_id, Days order_day, String ingredient_name, String ingredient_type, int stock, int amount_needed) {
         this.ingredient_id = ingredient_id;
-        //this.supplier_id = supplier_id;
         this.order_day = order_day;
         this.ingredient_name = ingredient_name;
         this.ingredient_type = ingredient_type;
