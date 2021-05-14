@@ -57,7 +57,7 @@ public class Ingredient_Details extends AppCompatActivity {
         HashMap<String, String> params = new HashMap<>();
         params.put("ingredient_id", ingredient_id+"");
         params.put("supplier_id", supplier_id+"");
-        params.put("order_days", Days.MONDAY.toString());
+        params.put("order_day", Days.MONDAY.toString());
         params.put("ingredient_name", editname.getText().toString());
         params.put("ingredient_type", edittype.getText().toString());
 
@@ -67,7 +67,7 @@ public class Ingredient_Details extends AppCompatActivity {
         {
             try
             {
-                Log.e("test", JsonParse.getResponseArr(request.getResult().get()).toString());
+                Log.e("test", JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode()).toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
