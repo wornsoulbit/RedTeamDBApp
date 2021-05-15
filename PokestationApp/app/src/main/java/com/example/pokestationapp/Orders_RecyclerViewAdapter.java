@@ -18,15 +18,15 @@ import java.util.ArrayList;
 
 public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_RecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<Orders> ordersArrayList;
+    private ArrayList<Ingredient> ingredients;
 
     private LayoutInflater mInflator;
     private Suppliers_RecyclerViewAdapter.ItemClickListener mClickListener;
 
-    public Orders_RecyclerViewAdapter(Context context, ArrayList<Orders> orders)
+    public Orders_RecyclerViewAdapter(Context context, ArrayList<Ingredient> ingredients)
     {
         this.mInflator = LayoutInflater.from(context);
-        this.ordersArrayList = orders;
+        this.ingredients = ingredients;
     }
 
     @NonNull
@@ -38,17 +38,16 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
 
     @Override
     public void onBindViewHolder(@NonNull Orders_RecyclerViewAdapter.ViewHolder holder, int position) {
-        Orders orders = ordersArrayList.get(position);
-        //Orders db needs to be changed if we want the ingredient_name, ingredient_type, stock and order amount.
-//        holder.order_amount.setText(orders.get());
-//        holder.ingredient_type.setText(ingredient.getIngredient_type());
-//        holder.ingredient_stock.setText(ingredient.getStock()+"");
-//        holder.ingredient_needed.setText(ingredient.getAmount_needed()+"");
+        Ingredient ingredient = ingredients.get(position);
+        holder.order_ingredient_name.setText(ingredient.getIngredient_name());
+        holder.order_ingredient_type.setText(ingredient.getIngredient_type());
+        holder.stock.setText(ingredient.getStock()+"");
+        holder.order_amount.setText(ingredient.getAmount_needed()+"");
     }
 
     @Override
     public int getItemCount() {
-        return ordersArrayList.size();
+        return ingredients.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -75,7 +74,7 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
         }
     }
 
-    Orders getItem(int id) { return ordersArrayList.get(id); }
+    Ingredient getItem(int id) { return ingredients.get(id); }
 
     void setClickListener(Suppliers_RecyclerViewAdapter.ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
