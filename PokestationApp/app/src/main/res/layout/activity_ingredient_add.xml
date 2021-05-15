@@ -62,13 +62,15 @@
         android:id="@+id/addIngredient_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
         android:layout_marginBottom="108dp"
-        android:text="Add"
         android:onClick="createIngredient"
+        android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addIngredient_editneeded" />
 
     <EditText
         android:id="@+id/addIngredient_editName"
