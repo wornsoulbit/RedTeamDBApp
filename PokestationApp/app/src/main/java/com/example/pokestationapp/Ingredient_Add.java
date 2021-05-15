@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.pokestationapp.Controllers.Api;
 import com.example.pokestationapp.Controllers.JsonParse;
@@ -42,31 +43,41 @@ public class Ingredient_Add extends AppCompatActivity {
         type_spinner.setAdapter(type_adapter);
     }
 
-    public void createIngredient(View view)
-    {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("order_day", Days.MONDAY.toString());
-        params.put("ingredient_name", i_name.getText().toString());
-        params.put("ingredient_type", type_spinner.getSelectedItem().toString());
-        params.put("stock", i_stock.getText().toString());
-        params.put("amount_needed", i_needed.getText().toString());
+    public void createIngredient(View view) {
+        String ingredientName = i_name.getText().toString();
+        String stock = i_stock.getText().toString();
+        String needed = i_needed.getText().toString();
 
-        PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_CREATE_INGREDIENT, params, 1025);
-        while (!request.getResult().isDone())
-        {
-            try
-            {
-                Log.e("test", JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode()).toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            };
+        if (ingredientName.matches("")) {
+            Toast.makeText(Ingredient_Add.this, "Please enter an Ingredient Name", Toast.LENGTH_LONG).show();
+        } else if (stock.matches("")) {
+            Toast.makeText(Ingredient_Add.this, "Please enter an Ingredient Stock", Toast.LENGTH_LONG).show();
+        } else if (needed.matches("")) {
+            Toast.makeText(Ingredient_Add.this, "Please enter the amount needed", Toast.LENGTH_LONG).show();
+        } else {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("order_day", Days.MONDAY.toString());
+            params.put("ingredient_name", ingredientName);
+            params.put("ingredient_type", type_spinner.getSelectedItem().toString());
+            params.put("stock", stock);
+            params.put("amount_needed", needed);
 
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_CREATE_INGREDIENT, params, 1025);
+            while (!request.getResult().isDone()) {
+                try {
+                    Log.e("test", JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode()).toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                ;
+
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            }
         }
     }
 
