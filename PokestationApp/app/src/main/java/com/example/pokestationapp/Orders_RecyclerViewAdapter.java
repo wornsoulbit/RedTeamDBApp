@@ -21,7 +21,7 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
     private ArrayList<Ingredient> ingredients;
 
     private LayoutInflater mInflator;
-    private Suppliers_RecyclerViewAdapter.ItemClickListener mClickListener;
+    private ItemClickListener mClickListener;
 
     public Orders_RecyclerViewAdapter(Context context, ArrayList<Ingredient> ingredients)
     {
@@ -32,7 +32,7 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
     @NonNull
     @Override
     public Orders_RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflator.inflate(R.layout.supplier_item, parent, false);
+        View view = mInflator.inflate(R.layout.order_item, parent, false);
         return new Orders_RecyclerViewAdapter.ViewHolder(view);
     }
 
@@ -40,9 +40,8 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
     public void onBindViewHolder(@NonNull Orders_RecyclerViewAdapter.ViewHolder holder, int position) {
         Ingredient ingredient = ingredients.get(position);
         holder.order_ingredient_name.setText(ingredient.getIngredient_name());
-        holder.order_ingredient_type.setText(ingredient.getIngredient_type());
-        holder.stock.setText(ingredient.getStock()+"");
-        holder.order_amount.setText(ingredient.getAmount_needed()+"");
+        holder.order_ingredient_date.setText(ingredient.getOrder_day().toString()+"");
+        holder.order_amount_needed.setText(ingredient.getAmount_needed()+"");
     }
 
     @Override
@@ -52,18 +51,16 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView order_amount;
-        TextView stock;
+        TextView order_amount_needed;
+        TextView order_ingredient_date;
         TextView order_ingredient_name;
-        TextView order_ingredient_type;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            order_amount = itemView.findViewById(R.id.order_amount);
-            stock = itemView.findViewById(R.id.stock);
-            order_ingredient_name = itemView.findViewById(R.id.order_ingredient_name);
-            order_ingredient_type = itemView.findViewById(R.id.order_ingredient_type);
+            order_amount_needed = itemView.findViewById(R.id.ingredient_needed);
+            order_ingredient_name = itemView.findViewById(R.id.ingredient_name);
+            order_ingredient_date = itemView.findViewById(R.id.ingredient_date);
 
             itemView.setOnClickListener(this);
         }
@@ -76,7 +73,7 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
 
     Ingredient getItem(int id) { return ingredients.get(id); }
 
-    void setClickListener(Suppliers_RecyclerViewAdapter.ItemClickListener itemClickListener) {
+    void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
