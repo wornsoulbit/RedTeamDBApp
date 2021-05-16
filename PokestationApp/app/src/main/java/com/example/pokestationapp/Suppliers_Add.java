@@ -23,43 +23,39 @@ import java.util.concurrent.ExecutionException;
 public class Suppliers_Add extends AppCompatActivity {
 
     EditText supplier_name;
-    Spinner type_spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ingredient_add);
+        setContentView(R.layout.activity_suppliers_add);
 
         supplier_name = findViewById(R.id.addSuppliers_name);
-
-        type_spinner = findViewById(R.id.addIngredient_spinnerType);
-        ArrayAdapter<CharSequence> type_adapter = ArrayAdapter.createFromResource(this,
-                R.array.type, android.R.layout.simple_spinner_item);
-        type_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        type_spinner.setAdapter(type_adapter);
     }
 
-    public void createSupplier(View view)
-    {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("supplier_name", supplier_name.getText().toString());
+    public void createSupplier(View view) {
 
-        PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_CREATE_INGREDIENT, params, 1025);
-        while (!request.getResult().isDone())
-        {
-            try
-            {
-                Log.e("test", JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode()).toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            };
-            Toast.makeText(Suppliers_Add.this, "Supplier Added", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+        if (supplier_name.getText().toString().matches("")) {
+            Toast.makeText(Suppliers_Add.this, "Please enter the company Name", Toast.LENGTH_LONG).show();
+        } else {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("supplier_name", supplier_name.getText().toString());
+
+            PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_CREATE_SUPPLIER, params, 1025);
+            while (!request.getResult().isDone()) {
+                try {
+                    Log.e("test", JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode()).toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                ;
+                Toast.makeText(Suppliers_Add.this, "Supplier Added", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            }
         }
     }
 }
