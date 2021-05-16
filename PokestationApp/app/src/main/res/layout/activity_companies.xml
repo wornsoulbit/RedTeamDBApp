@@ -55,6 +55,7 @@
         android:layout_width="256dp"
         android:layout_height="58dp"
         android:text="Companies"
+        android:onClick="companyDisplay"
         app:backgroundTint="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

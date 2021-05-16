@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="40sp"
     tools:context=".Suppliers_Display">
 
     <ImageView
@@ -18,8 +19,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/suppliers_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="420dp"
+        android:layout_width="413dp"
+        android:layout_height="383dp"
+        android:paddingBottom="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,8 +42,8 @@
         android:id="@+id/toAddSupplier_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="Add new Supplier"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/suppliers_recyclerview" />

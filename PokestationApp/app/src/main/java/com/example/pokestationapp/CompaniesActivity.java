@@ -19,4 +19,9 @@ public class CompaniesActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Suppliers_Add.class);
         startActivity(intent);
     }
+
+    public void companyDisplay(View view) {
+        Intent intent = new Intent(this, Suppliers_Display.class);
+        startActivity(intent);
+    }
 }
