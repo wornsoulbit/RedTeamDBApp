@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.pokestationapp.Controllers.Api;
 import com.example.pokestationapp.Controllers.JsonParse;
@@ -56,7 +57,7 @@ public class Suppliers_Add extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             };
-
+            Toast.makeText(Suppliers_Add.this, "Supplier Added", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
