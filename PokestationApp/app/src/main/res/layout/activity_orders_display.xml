@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="40sp"
     tools:context=".Orders_Display">
 
     <TextView
@@ -62,8 +63,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/orders_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_width="410dp"
+        android:layout_height="232dp"
         android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
