@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.pokestationapp.Controllers.Api;
 import com.example.pokestationapp.Controllers.JsonParse;
@@ -84,7 +85,7 @@ public class Ingredient_Details extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            Toast.makeText(Ingredient_Details.this, "Ingredient Updated", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, Ingredients_Display.class);
             startActivity(intent);
         }
@@ -95,6 +96,7 @@ public class Ingredient_Details extends AppCompatActivity {
         PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_DELETE_INGREDIENT + ingredient_id, null, 1024);
         while (!request.getResult().isDone())
         {
+            Toast.makeText(Ingredient_Details.this, "Ingredient Deleted", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, Ingredients_Display.class);
             startActivity(intent);
         }
