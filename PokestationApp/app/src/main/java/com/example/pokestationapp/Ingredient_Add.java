@@ -74,7 +74,7 @@ public class Ingredient_Add extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 ;
-
+                Toast.makeText(Ingredient_Add.this, "Ingredient Added", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             }
