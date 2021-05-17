@@ -1,14 +1,18 @@
 package com.example.pokestationapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pokestationapp.Controllers.Api;
+import com.example.pokestationapp.Controllers.PerformNetworkRequest;
 import com.example.pokestationapp.Models.Ingredient;
 import com.example.pokestationapp.Models.Orders;
 import com.example.pokestationapp.Models.Supplier;
@@ -19,14 +23,18 @@ import java.util.ArrayList;
 public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_RecyclerViewAdapter.ViewHolder> {
 
     private ArrayList<Ingredient> ingredients;
+    private ArrayList<Orders> orders;
 
     private LayoutInflater mInflator;
     private ItemClickListener mClickListener;
+    private Context mContext;
 
-    public Orders_RecyclerViewAdapter(Context context, ArrayList<Ingredient> ingredients)
+    public Orders_RecyclerViewAdapter(Context context, ArrayList<Ingredient> ingredients, ArrayList<Orders> orders)
     {
         this.mInflator = LayoutInflater.from(context);
         this.ingredients = ingredients;
+        this.orders = orders;
+        this.mContext = context;
     }
 
     @NonNull
@@ -42,6 +50,7 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
         holder.order_ingredient_name.setText(ingredient.getIngredient_name());
         holder.order_ingredient_date.setText(ingredient.getOrder_day().toString()+"");
         holder.order_amount_needed.setText(ingredient.getAmount_needed()+"");
+        holder.position = position;
     }
 
     @Override
@@ -54,7 +63,7 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
         TextView order_amount_needed;
         TextView order_ingredient_date;
         TextView order_ingredient_name;
-
+        int position;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +72,30 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
             order_ingredient_date = itemView.findViewById(R.id.ingredient_date);
 
             itemView.setOnClickListener(this);
+
+            itemView.findViewById(R.id.deleteOrder_button).setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    int order_id = 1;
+
+                    for(int i = 0; i < orders.size(); i++)
+                    {
+                        if(ingredients.get(position).getIngredient_id() == orders.get(i).getIngredient_id())
+                        {
+                            order_id = orders.get(i).getOrder_id();
+                        }
+                    }
+
+                    PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_DELETE_ORDER + order_id, null, 1024);
+                    while (!request.getResult().isDone())
+                    {
+                        Toast.makeText(mContext, "Order Deleted", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(mContext, Orders_Main.class);
+                        mContext.startActivity(intent);
+                    }
+                }
+            });
         }
 
         @Override
