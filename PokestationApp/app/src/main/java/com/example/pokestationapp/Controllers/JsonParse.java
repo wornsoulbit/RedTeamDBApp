@@ -14,7 +14,7 @@ public class JsonParse {
         if (requestCode == 1024) {
             return jsonObject.getJSONArray("response");
         } else if(requestCode == 1025){
-            return jsonObject.getJSONArray("message");
+            return new JSONArray();
         } else {
             return jsonObject.getJSONArray("error");
         }
