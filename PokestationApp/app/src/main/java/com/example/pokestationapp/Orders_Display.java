@@ -78,7 +78,7 @@ public class Orders_Display extends AppCompatActivity {
     }
 
     public void addToOrders(View view) {
-        Intent intent = new Intent(this, Orders_add.class);
+        Intent intent = new Intent(this, AddOrderActivity.class);
         startActivity(intent);
     }
 }
