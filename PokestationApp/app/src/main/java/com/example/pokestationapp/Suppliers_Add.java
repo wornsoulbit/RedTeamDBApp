@@ -51,10 +51,12 @@ public class Suppliers_Add extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                ;
                 Toast.makeText(Suppliers_Add.this, "Supplier Added", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, Orders_Main.class);
-                startActivity(intent);
+                Intent intent = getIntent();
+
+                Intent previous = new Intent(this, Suppliers_Display.class);
+                previous.putExtra("order_day", intent.getStringExtra("order_day"));
+                startActivity(previous);
             }
         }
     }
