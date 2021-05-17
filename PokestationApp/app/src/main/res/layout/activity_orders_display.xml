@@ -8,8 +8,21 @@
     tools:context=".Orders_Display">
 
     <TextView
+        android:id="@+id/actions"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/gray"
+        android:gravity="center"
+        android:text="Actions"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+    <TextView
         android:id="@+id/order_amount"
-        android:layout_width="120dp"
+        android:layout_width="80dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:background="@color/gray"
@@ -17,30 +30,28 @@
         android:text="Order Amount"
         android:textAlignment="center"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/actions"
+        app:layout_constraintStart_toEndOf="@+id/date"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="120dp"
+        android:layout_width="80dp"
         android:layout_height="50dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginLeft="21dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginRight="22dp"
         android:background="@color/gray"
         android:gravity="center"
         android:text="Date"
         android:textAlignment="center"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@+id/order_amount"
         app:layout_constraintStart_toEndOf="@+id/order_ingredient_name"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <TextView
         android:id="@+id/order_ingredient_name"
-        android:layout_width="120dp"
+        android:layout_width="80dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:background="@color/gray"

@@ -68,7 +68,7 @@ class DbOperation {
     function createSupplier($supplier_name) {
         $stmt = $this
             ->connection
-            ->prepare("INSERT INTO ingredient (supplier_name) VALUES (?)");
+            ->prepare("INSERT INTO supplier (supplier_name) VALUES (?)");
         $stmt->bind_param("s", $supplier_name);
         if ($stmt->execute()) return true;
         return false;

@@ -42,7 +42,7 @@ public class Orders_Display extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.orders_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new Orders_RecyclerViewAdapter(this, ingredients);
+        adapter = new Orders_RecyclerViewAdapter(this, ingredients, orders);
 
         recyclerView.setAdapter(adapter);
     }

@@ -19,12 +19,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/suppliers_recyclerview"
-        android:layout_width="413dp"
-        android:layout_height="383dp"
+        android:layout_width="411dp"
+        android:layout_height="318dp"
         android:paddingTop="40sp"
         android:paddingBottom="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
@@ -45,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Add new Supplier"
+        android:onClick="toAddSupplier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/suppliers_recyclerview" />

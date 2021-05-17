@@ -53,7 +53,7 @@ public class Suppliers_Add extends AppCompatActivity {
                 }
                 ;
                 Toast.makeText(Suppliers_Add.this, "Supplier Added", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, Orders_Main.class);
                 startActivity(intent);
             }
         }

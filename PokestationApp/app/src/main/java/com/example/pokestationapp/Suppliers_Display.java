@@ -85,4 +85,10 @@ public class Suppliers_Display extends AppCompatActivity implements Suppliers_Re
             }
         }
     }
+
+    public void toAddSupplier(View view)
+    {
+        Intent intent = new Intent(this, Suppliers_Add.class);
+        startActivity(intent);
+    }
 }
