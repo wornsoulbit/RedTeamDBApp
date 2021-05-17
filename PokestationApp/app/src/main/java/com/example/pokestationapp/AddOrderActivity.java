@@ -28,12 +28,6 @@ public class AddOrderActivity extends AppCompatActivity {
             company.setText(getIntent().getStringExtra("supplier_name"));
         }
 
-
-    }
-
-    public void chooseDate(View view) {
-        Intent intent = new Intent(this, day_select.class);
-        startActivity(intent);
     }
 
     public void chooseCompany(View view) {
