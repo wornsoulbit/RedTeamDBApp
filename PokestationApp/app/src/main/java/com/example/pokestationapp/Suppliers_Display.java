@@ -49,7 +49,7 @@ public class Suppliers_Display extends AppCompatActivity implements Suppliers_Re
 
     @Override
     public void onItemClick(View view, int position) {
-        Intent intent = new Intent(this, AddOrderActivity.class);
+        Intent intent = new Intent(this, Orders_Display.class);
         intent.putExtra("supplier_name", adapter.getItem(position).getSupplier_name());
         intent.putExtra("supplier_id", adapter.getItem(position).getSupplier_id());
         intent.putExtra("order_day", order_day);

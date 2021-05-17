@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.pokestationapp.Controllers.Api;
 import com.example.pokestationapp.Controllers.JsonParse;
@@ -60,7 +63,7 @@ public class Orders_Display extends AppCompatActivity {
                     JSONObject obj = response.getJSONObject(i);
 
                     Ingredient ingredient = new Ingredient(obj.getInt("ingredient_id"),
-                            Days.valueOf(obj.getString("order_day").toUpperCase()),
+                            Days.valueOf(intent.getStringExtra("order_day").toString().toUpperCase()),
                             obj.getString("ingredient_name"),
                             obj.getString("ingredient_type"),
                             obj.getInt("stock"),
@@ -68,7 +71,7 @@ public class Orders_Display extends AppCompatActivity {
 
                     for(int j = 0; j < orders.size(); j++)
                     {
-                        Log.e("test1", ingredient.getIngredient_id()+"");
+                        //Log.e("test1", ingredient.getIngredient_id()+"");
                         if(ingredient.getIngredient_id() == orders.get(j).getIngredient_id())
                         {
                             ingredients.add(ingredient);
@@ -98,7 +101,7 @@ public class Orders_Display extends AppCompatActivity {
     }
 
     public void addToOrders(View view) {
-        Intent intent = new Intent(this, AddOrderActivity.class);
+        Intent intent = new Intent(this, Orders_add.class);
         startActivity(intent);
     }
 
@@ -146,5 +149,19 @@ public class Orders_Display extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void copyToClipboard(View view)
+    {
+        Toast.makeText(this, "Order Copied", Toast.LENGTH_SHORT).show();
+        String result = intent.getStringExtra("supplier_name") + "\n" + intent.getStringExtra("order_day") + "'s Delivery \n";
+        for(int i = 0; i < ingredients.size(); i++)
+        {
+            result += ingredients.get(i).getIngredient_name() + ": " + (ingredients.get(i).getAmount_needed()- ingredients.get(i).getStock()) + " crates";
+        }
+
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(intent.getStringExtra("order_day") + "'s order", result);
+        clipboard.setPrimaryClip(clip);
     }
 }

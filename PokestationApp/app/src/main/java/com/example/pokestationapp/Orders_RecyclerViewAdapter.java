@@ -2,6 +2,7 @@ package com.example.pokestationapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pokestationapp.Controllers.Api;
+import com.example.pokestationapp.Controllers.JsonParse;
 import com.example.pokestationapp.Controllers.PerformNetworkRequest;
 import com.example.pokestationapp.Models.Ingredient;
 import com.example.pokestationapp.Models.Orders;
 import com.example.pokestationapp.Models.Supplier;
 
+import org.json.JSONException;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_RecyclerViewAdapter.ViewHolder> {
 
@@ -49,7 +54,7 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
         Ingredient ingredient = ingredients.get(position);
         holder.order_ingredient_name.setText(ingredient.getIngredient_name());
         holder.order_ingredient_date.setText(ingredient.getOrder_day().toString()+"");
-        holder.order_amount_needed.setText(ingredient.getAmount_needed()+"");
+        holder.order_amount_needed.setText(ingredient.getAmount_needed() - ingredient.getStock() +"");
         holder.position = position;
     }
 
@@ -90,6 +95,15 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
                     PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_DELETE_ORDER + order_id, null, 1024);
                     while (!request.getResult().isDone())
                     {
+                        try {
+                            Log.e("test", JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode()).toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         Toast.makeText(mContext, "Order Deleted", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(mContext, Orders_Main.class);
                         mContext.startActivity(intent);
