@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class AddOrderActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddOrderActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,21 +21,4 @@ public class AddOrderActivity extends AppCompatActivity implements DatePickerDia
 
     }
 
-    public void showDatepicker(View view) {
-        DialogFragment datepicker = new DatePickerFragment();
-        datepicker.show(getSupportFragmentManager(), "Date picker");
-    }
-
-    @Override
-    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.YEAR, year);
-        c.set(Calendar.MONTH, month);
-        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-        String currentDateString = DateFormat.
-                getDateInstance(DateFormat.FULL).format(c.getTime());
-        TextView textView = findViewById(R.id.textView2);
-        textView.setText(currentDateString);
-    }
 }
