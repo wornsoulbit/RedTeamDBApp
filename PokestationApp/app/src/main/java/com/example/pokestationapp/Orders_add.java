@@ -98,7 +98,12 @@ public class Orders_add extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     Toast.makeText(this, "Order Added", Toast.LENGTH_SHORT).show();
+                    Intent receive = getIntent();
+
                     Intent intent = new Intent(this, Orders_Display.class);
+                    intent.putExtra("supplier_id", receive.getIntExtra("supplier_id", 0));
+                    intent.putExtra("supplier_name", receive.getStringExtra("supplier_name"));
+                    intent.putExtra("order_day", receive.getStringExtra("order_day"));
                     startActivity(intent);
                 }
             }
