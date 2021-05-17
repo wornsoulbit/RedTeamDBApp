@@ -27,26 +27,32 @@ public class Suppliers_Display extends AppCompatActivity implements Suppliers_Re
 
     Suppliers_RecyclerViewAdapter adapter;
     ArrayList<Supplier> suppliers = new ArrayList<>();
+    String order_day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_suppliers_display);
+        setContentView(R.layout.activity_ingredients_display);
 
         readSuppliers();
 
-        RecyclerView recyclerView = findViewById(R.id.suppliers_recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.ingredients_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new Suppliers_RecyclerViewAdapter(this, suppliers);
 
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
+
+        Intent intent = getIntent();
+        order_day = intent.getStringExtra("order_day");
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        Intent intent = new Intent(this, AddOrderActivity.class);
+        Intent intent = new Intent(this, Orders_Display.class);
         intent.putExtra("supplier_name", adapter.getItem(position).getSupplier_name());
+        intent.putExtra("supplier_id", adapter.getItem(position).getSupplier_id());
+        intent.putExtra("order_day", order_day);
         startActivity(intent);
     }
 
@@ -69,7 +75,7 @@ public class Suppliers_Display extends AppCompatActivity implements Suppliers_Re
                     ));
                 }
 
-                Log.e("test", suppliers.toString());
+                //Log.e("test", suppliers.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

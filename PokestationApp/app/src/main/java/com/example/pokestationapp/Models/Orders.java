@@ -35,4 +35,15 @@ public class Orders {
     public Days getOrder_day() {
         return order_day;
     }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "order_id=" + order_id +
+                ", supplier_id=" + supplier_id +
+                ", ingredient_id=" + ingredient_id +
+                ", stock_id=" + stock_id +
+                ", order_day=" + order_day +
+                '}';
+    }
 }

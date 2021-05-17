@@ -17,4 +17,12 @@ public class Supplier {
     public String getSupplier_name() {
         return supplier_name;
     }
+
+    @Override
+    public String toString() {
+        return "Supplier{" +
+                "supplier_id=" + supplier_id +
+                ", supplier_name='" + supplier_name + '\'' +
+                '}';
+    }
 }

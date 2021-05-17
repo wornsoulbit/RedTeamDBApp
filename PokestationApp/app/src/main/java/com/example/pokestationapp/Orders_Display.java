@@ -26,28 +26,32 @@ import java.util.concurrent.ExecutionException;
 public class Orders_Display extends AppCompatActivity {
 
     Orders_RecyclerViewAdapter adapter;
-    ArrayList<Ingredient> orders = new ArrayList<>();
+    ArrayList<Ingredient> ingredients = new ArrayList<>();
+    ArrayList<Orders> orders = new ArrayList<>();
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orders_display);
 
+        intent = getIntent();
+
         readOrders();
+        readIngredients();
 
         RecyclerView recyclerView = findViewById(R.id.orders_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new Orders_RecyclerViewAdapter(this, orders);
+        adapter = new Orders_RecyclerViewAdapter(this, ingredients);
 
         recyclerView.setAdapter(adapter);
-
     }
 
-    private void readOrders() {
+    private void readIngredients() {
         PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_GET_INGREDIENTS, null, 1024);
         while (!request.getResult().isDone()) {
             try {
-                orders.clear();
+                ingredients.clear();
 
                 JSONArray response = JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode());
                 for (int i = 0; i < response.length(); i++)
@@ -55,18 +59,34 @@ public class Orders_Display extends AppCompatActivity {
                     //getting each order object
                     JSONObject obj = response.getJSONObject(i);
 
-                    //adding the order to the list
-                    orders.add(new Ingredient(
-                            obj.getInt("ingredient_id"),
+                    Ingredient ingredient = new Ingredient(obj.getInt("ingredient_id"),
                             Days.valueOf(obj.getString("order_day").toUpperCase()),
                             obj.getString("ingredient_name"),
                             obj.getString("ingredient_type"),
                             obj.getInt("stock"),
-                            obj.getInt("amount_needed")
-                    ));
+                            obj.getInt("amount_needed"));
+
+                    for(int j = 0; j < orders.size(); j++)
+                    {
+                        Log.e("test1", ingredient.getIngredient_id()+"");
+                        if(ingredient.getIngredient_id() == orders.get(j).getIngredient_id())
+                        {
+                            ingredients.add(ingredient);
+                        }
+                    }
+
+                            //adding the order to the list
+                            /*ingredients.add(new Ingredient(
+                                    obj.getInt("ingredient_id"),
+                                    Days.valueOf(obj.getString("order_day").toUpperCase()),
+                                    obj.getString("ingredient_name"),
+                                    obj.getString("ingredient_type"),
+                                    obj.getInt("stock"),
+                                    obj.getInt("amount_needed")
+                            ));*/
                 }
 
-                Log.e("test", orders.toString());
+
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -80,5 +100,51 @@ public class Orders_Display extends AppCompatActivity {
     public void addToOrders(View view) {
         Intent intent = new Intent(this, Orders_add.class);
         startActivity(intent);
+    }
+
+    public void readOrders()
+    {
+        PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_GET_ORDERS, null, 1024);
+        while (!request.getResult().isDone()) {
+            try {
+                orders.clear();
+
+                JSONArray response = JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode());
+                for (int i = 0; i < response.length(); i++)
+                {
+                    //getting each hero object
+                    JSONObject obj = response.getJSONObject(i);
+
+                    Orders order = new Orders(
+                            obj.getInt("order_id"),
+                            obj.getInt("supplier_id"),
+                            obj.getInt("ingredient_id"),
+                            obj.getInt("stock_id"),
+                            Days.valueOf(obj.getString("order_day").toUpperCase()));
+
+                    if(order.getOrder_day().toString().toUpperCase().equals(intent.getStringExtra("order_day")) &&
+                        order.getSupplier_id() == intent.getIntExtra("supplier_id", 0))
+                    {
+                        orders.add(order);
+                    }
+                    //adding the hero to the list
+                    /*orders.add(new Orders(
+                            obj.getInt("order_id"),
+                            obj.getInt("supplier_id"),
+                            obj.getInt("ingredient_id"),
+                            obj.getInt("stock_id"),
+                            Days.valueOf(obj.getString("order_day").toUpperCase())
+                    ));*/
+                }
+
+                Log.e("test", orders.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
