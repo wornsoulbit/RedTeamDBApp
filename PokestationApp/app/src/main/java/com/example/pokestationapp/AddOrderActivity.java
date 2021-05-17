@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddOrderActivity extends AppCompatActivity {
-    TextView dayText;
+    TextView dayText, company;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +23,21 @@ public class AddOrderActivity extends AppCompatActivity {
             dayText.setText(day);
         }
 
+        company =  findViewById(R.id.textView3);
+        if(getIntent().getStringExtra("supplier_name") != null) {
+            company.setText(getIntent().getStringExtra("supplier_name"));
+        }
+
 
     }
 
     public void chooseDate(View view) {
         Intent intent = new Intent(this, Orders_Main.class);
+        startActivity(intent);
+    }
+
+    public void chooseCompany(View view) {
+        Intent intent = new Intent(this, Suppliers_Display.class);
         startActivity(intent);
     }
 }
