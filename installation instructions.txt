@@ -1,0 +1,23 @@
+1. Get and install XAMPP on your local machine from here: https://www.apachefriends.org/index.html
+
+2. Once installed copy the htdocs folder from RedTeamDBApp and copy it into where XAMPP was installed.
+
+3. Start up XAMPP and start up both the Apache and MySQL services with the start button. 
+
+4. Insert the database into PHPMyAdmin: To do this on the XAMPP panel click on the admin button
+this will open a page in your browser. From there click on the import button on the top bar and 
+click Browse... button and select the pokestationDB file then click the Go button at the bottom right.
+
+5. Find your local IPv4 address:
+   
+   a. For windows just open CMD and type ipconfig from there you can see your IPv4 address.
+   b. For Mac OS go to System Preferences then click on Network from there click on the 
+network your connected to then click the 'Advanced...' button from there you should see you IPv4 address
+https://www.hellotech.com/guide/for/how-to-find-ip-address-on-mac
+
+6. With the IPv4 replace ipv4-address with the local one: 
+http://ipv4-address/Pokestation/v1/Api.php?apicall=
+
+This file is located in: 
+\RedTeamDBApp\PokestationApp\app\src\main\java\com\example\pokestationapp\Controllers\Api.java
+

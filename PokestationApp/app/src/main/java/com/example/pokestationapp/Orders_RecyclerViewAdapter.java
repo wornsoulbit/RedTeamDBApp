@@ -92,7 +92,7 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
                         }
                     }
 
-                    PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_DELETE_ORDER + order_id, null, 1025);
+                    PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_DELETE_ORDER + order_id, null, 1024);
                     while (!request.getResult().isDone())
                     {
 //                        try {
