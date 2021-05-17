@@ -101,8 +101,11 @@ public class Orders_Display extends AppCompatActivity {
     }
 
     public void addToOrders(View view) {
-        Intent intent = new Intent(this, Orders_add.class);
-        startActivity(intent);
+        Intent sending = new Intent(this, Orders_add.class);
+        sending.putExtra("supplier_name", intent.getStringExtra("supplier_name"));
+        sending.putExtra("supplier_id", intent.getIntExtra("supplier_id", 0));
+        sending.putExtra("order_day", intent.getStringExtra("order_day"));
+        startActivity(sending);
     }
 
     public void readOrders()
@@ -157,7 +160,7 @@ public class Orders_Display extends AppCompatActivity {
         String result = intent.getStringExtra("supplier_name") + "\n" + intent.getStringExtra("order_day") + "'s Delivery \n";
         for(int i = 0; i < ingredients.size(); i++)
         {
-            result += ingredients.get(i).getIngredient_name() + ": " + (ingredients.get(i).getAmount_needed()- ingredients.get(i).getStock()) + " crates";
+            result += ingredients.get(i).getIngredient_name() + ": " + (ingredients.get(i).getAmount_needed()- ingredients.get(i).getStock()) + " crates\n";
         }
 
         ClipboardManager clipboard = (ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE);
