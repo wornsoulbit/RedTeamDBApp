@@ -63,7 +63,7 @@ public class Orders_Display extends AppCompatActivity {
                     JSONObject obj = response.getJSONObject(i);
 
                     Ingredient ingredient = new Ingredient(obj.getInt("ingredient_id"),
-                            Days.valueOf(intent.getStringExtra("order_day").toString().toUpperCase()),
+                            Days.valueOf(intent.getStringExtra("order_day")),
                             obj.getString("ingredient_name"),
                             obj.getString("ingredient_type"),
                             obj.getInt("stock"),
@@ -126,7 +126,7 @@ public class Orders_Display extends AppCompatActivity {
                             obj.getInt("supplier_id"),
                             obj.getInt("ingredient_id"),
                             obj.getInt("stock_id"),
-                            Days.valueOf(obj.getString("order_day").toUpperCase()));
+                            Days.valueOf(intent.getStringExtra("order_day")));
 
                     if(order.getOrder_day().toString().toUpperCase().equals(intent.getStringExtra("order_day")) &&
                         order.getSupplier_id() == intent.getIntExtra("supplier_id", 0))

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="40sp"
+    android:paddingTop="5sp"
     tools:context=".Orders_Display">
 
     <TextView
@@ -98,38 +98,36 @@
         android:id="@+id/copyToClipboard_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Copy To Clipboard"
         android:onClick="copyToClipboard"
+        android:text="Copy To Clipboard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/orders_recyclerview"
-        app:layout_constraintVertical_bias="0.386" />
+        app:layout_constraintVertical_bias="0.0" />
 
-     <Button
+    <Button
         android:id="@+id/toAddOrder_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add to Order"
         android:onClick="addToOrders"
+        android:text="Add to Order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/copyToClipboard_button"
         app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/orders_recyclerview"
-        app:layout_constraintVertical_bias="0.386" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/previousButton6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="46dp"
         android:onClick="goBack5"
         android:text="go back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/toAddOrder_button"
+        app:layout_constraintTop_toTopOf="@+id/toAddOrder_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

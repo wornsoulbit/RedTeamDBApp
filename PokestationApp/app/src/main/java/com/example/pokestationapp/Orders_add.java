@@ -89,7 +89,7 @@ public class Orders_add extends AppCompatActivity {
                 PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_CREATE_ORDER, params, 1025);
                 while (!request.getResult().isDone()) {
                     try {
-                        Log.e("test", JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode()).toString());
+                        Log.e("test3", JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode()).toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
