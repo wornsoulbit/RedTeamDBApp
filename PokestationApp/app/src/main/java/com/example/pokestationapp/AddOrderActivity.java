@@ -1,24 +1,28 @@
 package com.example.pokestationapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.TextView;
-
-import java.text.DateFormat;
-import java.util.Calendar;
+import android.widget.Toast;
 
 public class AddOrderActivity extends AppCompatActivity {
+    TextView dayText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_order);
+
+        dayText = findViewById(R.id.textView2);
+
+        if(getIntent().getStringExtra("day") != null){
+            String day = getIntent().getStringExtra("day");
+            dayText.setText(day);
+        }
+
 
     }
 
