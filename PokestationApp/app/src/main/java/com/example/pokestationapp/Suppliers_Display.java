@@ -32,11 +32,11 @@ public class Suppliers_Display extends AppCompatActivity implements Suppliers_Re
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ingredients_display);
+        setContentView(R.layout.activity_suppliers_display);
 
         readSuppliers();
 
-        RecyclerView recyclerView = findViewById(R.id.ingredients_recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.suppliers_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new Suppliers_RecyclerViewAdapter(this, suppliers);
 
