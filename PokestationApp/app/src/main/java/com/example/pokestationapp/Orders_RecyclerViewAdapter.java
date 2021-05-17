@@ -92,18 +92,18 @@ public class Orders_RecyclerViewAdapter extends RecyclerView.Adapter<Orders_Recy
                         }
                     }
 
-                    PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_DELETE_ORDER + order_id, null, 1024);
+                    PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_DELETE_ORDER + order_id, null, 1025);
                     while (!request.getResult().isDone())
                     {
-                        try {
-                            Log.e("test", JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode()).toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            Log.e("test", JsonParse.getResponseArr(request.getResult().get(), request.getRequestCode()).toString());
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        } catch (ExecutionException e) {
+//                            e.printStackTrace();
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
                         Toast.makeText(mContext, "Order Deleted", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(mContext, Orders_Main.class);
                         mContext.startActivity(intent);

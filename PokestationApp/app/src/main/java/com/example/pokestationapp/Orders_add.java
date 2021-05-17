@@ -98,7 +98,7 @@ public class Orders_add extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     Toast.makeText(this, "Order Added", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(this, MainActivity.class);
+                    Intent intent = new Intent(this, Orders_Display.class);
                     startActivity(intent);
                 }
             }
