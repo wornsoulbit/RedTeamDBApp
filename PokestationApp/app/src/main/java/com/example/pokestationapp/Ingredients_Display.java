@@ -95,4 +95,10 @@ public class Ingredients_Display extends AppCompatActivity implements Ingredient
             }
         }
     }
+
+    public void goBack(View view)
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

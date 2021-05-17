@@ -160,4 +160,16 @@
         app:layout_constraintStart_toEndOf="@+id/updateIngredient_button"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
+    <Button
+        android:id="@+id/previousButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Go back"
+        android:onClick="goBack1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

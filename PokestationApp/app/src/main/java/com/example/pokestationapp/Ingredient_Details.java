@@ -101,4 +101,10 @@ public class Ingredient_Details extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    public void goBack1(View view)
+    {
+        Intent intent = new Intent(this, Ingredients_Display.class);
+        startActivity(intent);
+    }
 }

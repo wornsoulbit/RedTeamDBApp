@@ -167,4 +167,13 @@ public class Orders_Display extends AppCompatActivity {
         ClipData clip = ClipData.newPlainText(intent.getStringExtra("order_day") + "'s order", result);
         clipboard.setPrimaryClip(clip);
     }
+
+    public void goBack5(View view)
+    {
+        Intent intent = getIntent();
+
+        Intent previous = new Intent(this, Suppliers_Display.class);
+        previous.putExtra("order_day", intent.getStringExtra("order_day"));
+        startActivity(previous);
+    }
 }

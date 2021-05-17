@@ -79,10 +79,24 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ingredients_recyclerview"
         android:layout_width="411dp"
-        android:layout_height="416dp"
+        android:layout_height="378dp"
         android:paddingTop="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.402" />
+
+    <Button
+        android:id="@+id/previousButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="go back"
+        android:onClick="goBack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingredients_recyclerview" />
 </androidx.constraintlayout.widget.ConstraintLayout>

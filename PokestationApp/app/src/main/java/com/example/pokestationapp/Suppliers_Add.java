@@ -58,4 +58,13 @@ public class Suppliers_Add extends AppCompatActivity {
             }
         }
     }
+
+    public void goBack6(View view)
+    {
+        Intent intent = getIntent();
+
+        Intent previous = new Intent(this, Suppliers_Display.class);
+        previous.putExtra("order_day", intent.getStringExtra("order_day"));
+        startActivity(previous);
+    }
 }

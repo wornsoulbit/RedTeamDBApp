@@ -81,4 +81,10 @@ public class Ingredient_Add extends AppCompatActivity {
         }
     }
 
+    public void goBack2(View view)
+    {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }

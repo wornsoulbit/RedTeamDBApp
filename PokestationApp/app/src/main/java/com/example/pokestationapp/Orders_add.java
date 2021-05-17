@@ -104,4 +104,15 @@ public class Orders_add extends AppCompatActivity {
             }
         }
     }
+
+    public void goBack7(View view)
+    {
+        Intent intent = getIntent();
+
+        Intent previous = new Intent(this, Orders_Display.class);
+        previous.putExtra("supplier_name", intent.getStringExtra("supplier_name"));
+        previous.putExtra("supplier_id", intent.getIntExtra("supplier_id", 0));
+        previous.putExtra("order_day", intent.getStringExtra("order_day"));
+        startActivity(previous);
+    }
 }
