@@ -18,8 +18,8 @@ public class AddOrderActivity extends AppCompatActivity {
 
         dayText = findViewById(R.id.textView2);
 
-        if(getIntent().getStringExtra("day") != null){
-            String day = getIntent().getStringExtra("day");
+        if(getIntent().getStringExtra("order_day") != null){
+            String day = getIntent().getStringExtra("order_day");
             dayText.setText(day);
         }
 
@@ -32,7 +32,7 @@ public class AddOrderActivity extends AppCompatActivity {
     }
 
     public void chooseDate(View view) {
-        Intent intent = new Intent(this, Orders_Main.class);
+        Intent intent = new Intent(this, day_select.class);
         startActivity(intent);
     }
 
